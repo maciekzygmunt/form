@@ -31,7 +31,7 @@ const Input = (props: InputProps) => {
         type={type}
         placeholder={placeholder}
         className={clsx(
-          'h-10 w-full rounded-lg border pl-2 outline-none placeholder:text-slate-400 focus:ring-1  transition-all',
+          'h-10 w-full min-w-[243px] lg:min-w-full lg:w-48 rounded-lg border pl-2 outline-none placeholder:text-slate-400 focus:ring-1  transition-all',
           additionalClassname,
           !!formState.errors[name]?.message
             ? 'border-red-500 focus:ring-red-600 focus:border-red-600'

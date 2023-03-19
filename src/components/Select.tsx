@@ -34,13 +34,13 @@ const Select = (props: SelectProps) => {
   }
 
   return (
-    <div className="flex h-10 w-56 items-center justify-center">
-      <div className="mx-auto w-full max-w-xs">
+    <div className="flex h-10 w-full min-w-[243px] lg:w-48 items-center justify-center">
+      <div className="w-full ">
         <Listbox as="div" className="space-y-1" value={selected} onChange={handleSelection}>
           {({ open }) => (
             <>
               <div className="relative">
-                <span className="flex flex-col mt-9">
+                <span className="flex flex-col">
                   <label className="text-sm">{props.label || <>&nbsp;</>}</label>
                   <Listbox.Button
                     className={clsx(

@@ -38,7 +38,7 @@ const Form = () => {
         className="flex flex-col gap-2 justify-center items-center"
         onSubmit={methods.handleSubmit(submit)}
       >
-        <div className="flex gap-2">
+        <div className="flex flex-col items-center lg:flex-row gap-2">
           <Input name="name" label="Dish name" placeholder="Dish name..." type="text" isRequired />
           <Input name="preparation_time" label="Preparation time" type="time" step={1} isRequired />
           <Select name="type" label="Type" options={OPTIONS} placeholder="Select type..." />
