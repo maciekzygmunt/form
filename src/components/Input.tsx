@@ -1,15 +1,26 @@
 import clsx from 'clsx';
 import { InputHTMLAttributes } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { RegisterOptions, useFormContext } from 'react-hook-form';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label?: string;
+  isRequired?: boolean;
   additionalClassname?: string;
+  additionalOptions?: RegisterOptions;
 }
 
 const Input = (props: InputProps) => {
-  const { name, type, label, placeholder, additionalClassname, ...rest } = props;
+  const {
+    name,
+    isRequired,
+    type,
+    label,
+    placeholder,
+    additionalClassname,
+    additionalOptions,
+    ...rest
+  } = props;
 
   const { register, formState } = useFormContext();
 
@@ -20,14 +31,15 @@ const Input = (props: InputProps) => {
         type={type}
         placeholder={placeholder}
         className={clsx(
-          'h-10 rounded-lg border pl-2 outline-none placeholder:text-slate-400 focus:ring-1  transition-all',
+          'h-10 w-full rounded-lg border pl-2 outline-none placeholder:text-slate-400 focus:ring-1  transition-all',
           additionalClassname,
           !!formState.errors[name]?.message
             ? 'border-red-500 focus:ring-red-600 focus:border-red-600'
             : 'border-primary focus:ring-tertiary focus:border-tertiary'
         )}
         {...register(name, {
-          required: 'Required',
+          ...(isRequired && { required: 'Required' }),
+          ...additionalOptions,
         })}
         {...rest}
       />
