@@ -34,7 +34,7 @@ const Select = (props: SelectProps) => {
   }
 
   return (
-    <div className="flex h-10 w-full min-w-[243px] lg:w-48 items-center justify-center">
+    <div className="flex h-10 mt-4 lg:mt-0 w-full min-w-[243px] lg:w-48 items-center justify-center">
       <div className="w-full ">
         <Listbox as="div" className="space-y-1" value={selected} onChange={handleSelection}>
           {({ open }) => (
@@ -44,7 +44,10 @@ const Select = (props: SelectProps) => {
                   <label className="text-sm">{props.label || <>&nbsp;</>}</label>
                   <Listbox.Button
                     className={clsx(
-                      'relative h-10 w-full cursor-default overflow-x-hidden whitespace-nowrap rounded-lg border border-primary bg-white pl-2 pr-10 text-left text-slate-400 outline-none transition duration-150 ease-in-out focus:ring-1 focus:border-tertiary'
+                      'relative h-10 w-full cursor-default overflow-x-hidden whitespace-nowrap rounded-lg border  bg-white pl-2 pr-10 text-left text-slate-400 outline-none transition duration-150 ease-in-out focus:ring-1 ',
+                      !!fieldState.error?.message
+                        ? 'border-red-500 focus:border-red-600 focus:ring-red-600'
+                        : 'border-primary focus:border-tertiary'
                     )}
                   >
                     {!selected.length && props.placeholder}
