@@ -33,6 +33,10 @@ const useAddDish = () => {
         toast.dismiss();
         toast.success('Dish created successfully!');
       },
+      onError() {
+        toast.dismiss();
+        toast.error('Failed to create dish!');
+      },
     }
   );
 };

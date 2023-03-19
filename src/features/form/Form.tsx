@@ -14,7 +14,7 @@ const Form = () => {
   const submit = (d: FormData) => {
     const data = {
       name: d.name,
-      preparation_time: d.preparation_time,
+      preparation_time: '12:12:12',
       type: d.type,
       ...(d.type === TYPES.PIZZA && {
         no_of_slices: +d.no_of_slices!,
@@ -49,7 +49,12 @@ const Form = () => {
                 label="No of slices"
                 placeholder="Number of slices..."
                 type="number"
-                min={0}
+                additionalOptions={{
+                  min: {
+                    value: 1,
+                    message: 'Minimum value is 1',
+                  },
+                }}
                 step={1}
                 isRequired
               />
@@ -58,6 +63,12 @@ const Form = () => {
                 label="Diameter"
                 placeholder="Diameter..."
                 type="number"
+                additionalOptions={{
+                  min: {
+                    value: 1,
+                    message: 'Minimum value is 1',
+                  },
+                }}
                 step={0.01}
                 isRequired
               />
@@ -94,8 +105,8 @@ const Form = () => {
                 type="number"
                 additionalOptions={{
                   min: {
-                    value: 0,
-                    message: 'Minimum value is 0',
+                    value: 1,
+                    message: 'Minimum value is 1',
                   },
                 }}
                 step={1}
