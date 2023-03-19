@@ -1,5 +1,7 @@
+import Button from '@/components/Button';
 import Input from '@/components/Input';
-import { useForm, useFieldArray, FormProvider } from 'react-hook-form';
+import Select from '@/components/Select';
+import { useForm, FormProvider } from 'react-hook-form';
 
 type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] extends N
   ? Acc[number]
@@ -17,6 +19,8 @@ export interface FormData {
   slices_of_bread?: number;
 }
 
+const OPTIONS = ['pizza', 'soup', 'sandwich'];
+
 const Form = () => {
   const methods = useForm<FormData>();
 
@@ -24,10 +28,20 @@ const Form = () => {
     console.log(d);
   };
 
+  const selectedType = methods.watch('type');
+
   return (
     <FormProvider {...methods}>
-      <form className="flex justify-center items-center" onSubmit={methods.handleSubmit(submit)}>
-        <Input name="name" placeholder="Name..." type="text" />
+      <form
+        className="flex flex-col gap-2 justify-center items-center"
+        onSubmit={methods.handleSubmit(submit)}
+      >
+        <div className="flex gap-2">
+          <Input name="name" label="Dish name" placeholder="Dish name..." type="text" />
+          <Input name="preparation_time" label="Preparation time" type="time" step={1} />
+          <Select name="type" label="Type" options={OPTIONS} placeholder="Select type..." />
+        </div>
+        <Button type="submit">Add</Button>
       </form>
     </FormProvider>
   );
