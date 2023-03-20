@@ -14,7 +14,7 @@ const Form = () => {
   const submit = (d: FormData) => {
     const data = {
       name: d.name,
-      preparation_time: '12:12:12',
+      preparation_time: d.preparation_time,
       type: d.type,
       ...(d.type === TYPES.PIZZA && {
         no_of_slices: +d.no_of_slices!,
